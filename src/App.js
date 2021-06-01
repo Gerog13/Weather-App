@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import InputSearch from "./components/InputSearch";
+import Weather from "./components/Weather";
 
 function App() {
+  const [result, setResult] = useState({ state: null });
+  const [weather, setWeather] = useState({});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="h-screen w-full flex flex-col items-center">
+      <a href="/">
+        <h1 className="text-5xl mt-10 pb-4 text-gray-50">Weather App</h1>
+      </a>
+
+      <InputSearch
+        setResult={setResult}
+        setWeather={setWeather}
+        result={result}
+      />
+      {result.state ? <Weather weather={weather} /> : ""}
     </div>
   );
 }
